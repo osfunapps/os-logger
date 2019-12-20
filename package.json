@@ -1,0 +1,17 @@
+{
+  "name": "os-logger",
+  "version": "1.0.0",
+  "description": "This module contains nodejs log operations",
+  "main": "index.js",
+  "keywords": [
+    "osfunapps",
+    "tools",
+    "logger",
+    "npm",
+    "console",
+    "info",
+    "error"
+  ],
+  "author": "osfunapps",
+  "license": "ISC"
+}
