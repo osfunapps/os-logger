@@ -1,6 +1,22 @@
 const self = module.exports = {
 
     /**
+     * To use, call attachedLogFilePath(filePath)
+     */
+    attachedLogStream: false,
+
+    /**
+     * Attach a log file so all printed text to console will also be written to a file
+     */
+    attachLogFile: function (filePath) {
+        return new Promise(function (resolve, reject) {
+            let fs = require('fs')
+            self.attachedLogStream = fs.createWriteStream(filePath, {flags: 'a'});
+            resolve()
+        })
+    },
+
+    /**
      * Will print a warning message
      */
     warning: function (txt) {
@@ -55,19 +71,32 @@ const self = module.exports = {
             stdout.write(REQUEST + text + "\n");
 
             stdin.on('data', data => {
+                stdin.removeAllListeners('data')
+                stdin.removeAllListeners('error')
                 resolve(data.toString().trim());
-                stdin.destroy()
             });
             stdin.on('error', err => reject(err));
-            stdin.on('end', function(){
-                console.log("closed!")
-            });
         })
-    }
+    },
+
+    /**
+     * Will write to a log file
+     */
+    appendToLogFile: function (text) {
+        appendToLogFile(text)
+    },
+
 };
 
 function print(col, txt) {
+    if (self.attachedLogStream !== false) {
+        appendToLogFile(`${txt}\n`)
+    }
     console.log(`${col}${txt}`)
+}
+
+function appendToLogFile(text) {
+    self.attachedLogStream.write(text)
 }
 
 // color indications

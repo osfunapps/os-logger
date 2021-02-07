@@ -11,76 +11,76 @@ Install via npm:
 
 ## Usage       
 Require logger:
-        
-    var logger = require("os-logger")
-
+```js  
+var logger = require("os-logger")
+```
 ## Functions and signatures:
+```js
+/**
+ * Will print a warning message
+ */
+warning: function (txt) {
+    print(WARNING, txt)
+},
 
-    /**
-     * Will print a warning message
-     */
-    warning: function (txt) {
-        print(WARNING, txt)
-    },
+/**
+ * Will print a bold message
+ */
+bold: function (txt) {
+    print(BOLD, txt)
+},
 
-    /**
-     * Will print a bold message
-     */
-    bold: function (txt) {
-        print(BOLD, txt)
-    },
+/**
+ * Will print an underline message
+ */
+underline: function (txt) {
+    print(UNDERLINE, txt)
+},
 
-    /**
-     * Will print an underline message
-     */
-    underline: function (txt) {
-        print(UNDERLINE, txt)
-    },
+/**
+ * Will print a failed message
+ */
+failure: function (txt) {
+    print(FAILURE, txt)
+},
 
-    /**
-     * Will print a failed message
-     */
-    failure: function (txt) {
-        print(FAILURE, txt)
-    },
-
-    /**
-     * Will print a success message
-     */
-    success: function (txt) {
-        print(SUCCESS, txt)
-    },
-
-
-    /**
-     * Will print an info message
-     */
-    info: function (txt) {
-        print(INFO, txt)
-    },
-
-    /**
-     * Will request an input from the user
-     */
-    inputRequest: function (text) {
-        return new Promise((resolve, reject) => {
-            const {stdin, stdout} = process;
+/**
+ * Will print a success message
+ */
+success: function (txt) {
+    print(SUCCESS, txt)
+},
 
 
-            stdin.resume();
-            stdout.write(REQUEST + text + "\n");
+/**
+ * Will print an info message
+ */
+info: function (txt) {
+    print(INFO, txt)
+},
 
-            stdin.on('data', data => {
-                resolve(data.toString().trim());
-                stdin.destroy()
-            });
-            stdin.on('error', err => reject(err));
-            stdin.on('end', function(){
-                console.log("closed!")
-            });
-        })
-    }    
-    
+/**
+ * Will request an input from the user
+ */
+inputRequest: function (text) {
+    return new Promise((resolve, reject) => {
+        const {stdin, stdout} = process;
+
+
+        stdin.resume();
+        stdout.write(REQUEST + text + "\n");
+
+        stdin.on('data', data => {
+            resolve(data.toString().trim());
+            stdin.destroy()
+        });
+        stdin.on('error', err => reject(err));
+        stdin.on('end', function(){
+            console.log("closed!")
+        });
+    })
+}    
+```   
 
 And more...
 
@@ -95,4 +95,3 @@ And more...
 
 
 ## Licence
-ISC

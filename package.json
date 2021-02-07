@@ -1,6 +1,6 @@
 {
   "name": "os-logger",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "This module contains nodejs log operations",
   "main": "index.js",
   "keywords": [
@@ -13,5 +13,8 @@
     "error"
   ],
   "author": "osfunapps",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "os-file-stream-handler": "^1.1.6"
+  }
 }
